@@ -1,5 +1,6 @@
 const {authJwt} = require('../middleware');
 const controller = require('../controllers/user.controller');
+const auth = require('../controllers/auth.controller');
 
 module.exports = (app) =>{
 
@@ -28,9 +29,18 @@ module.exports = (app) =>{
     controller.Admin
     );
 
+    // Actualizar usuarios
+
+    app.post('/api/update/:nombre_usuario', [authJwt.verifyToken],
+    auth.update_user
+    )
+
+    // Listar usuarios por el id
+
+    app.get('/api/usuarios/:nombre_usuario', [authJwt.verifyToken],
+    auth.get_user_by_id)
+
     // Ruta publica
-    
+
     app.get('/api/all', controller.allAccess);
-
-
 };

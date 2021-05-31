@@ -107,3 +107,37 @@ exports.signin = (req, res) => {
         res.status(500).send({ message: err.message });
       });
   };
+
+// Actualizar usuarios
+
+exports.update_user = (req,res) =>{
+  User.update({
+    cedula:req.body.cedula,
+    direccion_casa:req.body.direccion_casa,
+    correo:req.body.correo,
+    fecha_nacimiento:req.body.fecha_nacimiento,
+    noticias:req.body.noticias,
+    libros_pendiente:req.body.libros_pendiente,
+  },
+  {
+    where:{nombre_usuario:req.params.nombre_usuario}
+  })
+  .then(user =>{
+    return res.status(200).send({message:'Actualizado correctamente'});
+  })
+}
+
+// Buscar usuarios por nombre de usuario
+
+exports.get_user_by_id = (req,res) =>{
+  User.findOne({where:{nombre_usuario:req.params.nombre_usuario}
+  }).then(user =>{
+    if(user == null){
+      return res.status(404).send({message:'El dato no existe'});
+    }
+    else{
+      return res.status(200).send({message:user});
+    }
+  })
+}
+
