@@ -120,7 +120,7 @@ exports.update_user = (req,res) =>{
     libros_pendiente:req.body.libros_pendiente,
   },
   {
-    where:{nombre_usuario:req.params.nombre_usuario}
+    where:{id:req.params.id}
   })
   .then(user =>{
     return res.status(200).send({message:'Actualizado correctamente'});
@@ -130,13 +130,13 @@ exports.update_user = (req,res) =>{
 // Buscar usuarios por nombre de usuario
 
 exports.get_user_by_id = (req,res) =>{
-  User.findOne({where:{nombre_usuario:req.params.nombre_usuario}
+  User.findOne({where:{id:req.params.id}
   }).then(user =>{
     if(user == null){
       return res.status(404).send({message:'El dato no existe'});
     }
     else{
-      return res.status(200).send({message:user});
+      return res.status(200).send(user);
     }
   })
 }

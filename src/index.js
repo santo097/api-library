@@ -39,11 +39,18 @@ const Role = db.roles;
 
 // Migracion de tablas
 
+// ATENCION EN CASO DE MODIFICACION DE LA BASE DE DATOS DESCOMENTAR CODIGO Y VOLVERLO A COMENTAR PARA EVITAR REINICIO DE INFORMACION
+// db.sequelize.sync({force: true}).then(() => {
+//     console.log('Drop and Resync Database with { force: true }');
+//     initial();
+//   });
 
 // Rutas principal
 
 require('./routes/user.routes')(server);
 require('./routes/auth.routes')(server);
+require('./routes/libros.routes')(server);
+require('./routes/reserva.routes')(server);
 
 server.get('/', (req,res)=>{
     res.json('Hola soy la ruta principal');

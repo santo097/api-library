@@ -31,13 +31,13 @@ module.exports = (app) =>{
 
     // Actualizar usuarios
 
-    app.post('/api/update/:nombre_usuario', [authJwt.verifyToken],
+    app.post('/api/update/:id', [authJwt.verifyToken],
     auth.update_user
     )
 
     // Listar usuarios por el id
 
-    app.get('/api/usuarios/:nombre_usuario', [authJwt.verifyToken],
+    app.get('/api/usuarios/:id', [authJwt.verifyToken],
     auth.get_user_by_id)
 
     // Ruta publica

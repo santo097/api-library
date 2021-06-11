@@ -1,13 +1,36 @@
-const { sequelize, Sequelize } = require(".");
-
 module.exports = (sequelize, Sequelize) =>{
-    const Book = sequelize.define("book", {
-        id:{
-            type:Sequelize.INTEGER,
-            primaryKey:true
-        },
-        nombre:{
+    const Libro = sequelize.define("libro", {
+        titulo:{
             type:Sequelize.STRING
+        },
+        autor:{
+            type:Sequelize.STRING,
+        },
+        año_publicacion:{
+            type:Sequelize.STRING
+        },
+        genero:{
+            type:Sequelize.STRING
+        },
+        num_paginas:{
+            type:Sequelize.INTEGER
+        },
+        editorial:{
+            type:Sequelize.STRING
+        },
+        issn:{
+            type:Sequelize.STRING
+        },
+        idioma:{
+            type:Sequelize.STRING
+        },
+        estado:{
+            type:Sequelize.BOOLEAN
+        },
+        cantidad:{
+            type:Sequelize.INTEGER
         }
-    })
+    });
+
+    return Libro;
 }
