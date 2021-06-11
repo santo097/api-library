@@ -59,7 +59,7 @@ exports.crearReserva = (req,res) =>{
                     return res.status(404).send({message:'No existe el libro'});
                 }
                 else{
-                    libro.cantidad = libro.cantidad - 1;
+                    libro.cantidad = libro.cantidad - req.body.cantidad;
                     Book.update({
                         cantidad:libro.cantidad
                     },{
