@@ -25,12 +25,12 @@ module.exports = (app) =>{
     );
 
     app.get('/api/libro/:id',
-    [authJwt.verifyToken,authJwt.isAdmin],
+    [authJwt.verifyToken],
     controller.get_book_by_id
     );
 
     app.post('/api/libro/actualizar/:id',
-    [authJwt.verifyToken, authJwt.isAdmin],
+    [authJwt.verifyToken],
     controller.update_book
     );
 
