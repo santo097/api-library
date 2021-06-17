@@ -40,6 +40,12 @@ module.exports = (app) =>{
     app.get('/api/usuarios/:id', [authJwt.verifyToken],
     auth.get_user_by_id)
 
+    // 
+
+    app.post('/api/usuarios/recuperar',
+    [authJwt.verifyToken],
+    auth.recuperarContraseña);
+
     // Ruta publica
 
     app.get('/api/all', controller.allAccess);

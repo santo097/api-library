@@ -41,4 +41,10 @@ module.exports = (app) =>{
     [authJwt.verifyToken],
     controller.borrarReserva
     );
+
+    // Mostrar reservas 
+
+    app.get('/api/reserva/:id_usuario',
+    [authJwt.verifyToken],
+    controller.mostrarReservaUsuarios);
 }

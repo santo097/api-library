@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) =>{
         },
         cantidad:{
             type:Sequelize.INTEGER
+        },
+        estado:{
+            type:Sequelize.BOOLEAN
         }
     });
 

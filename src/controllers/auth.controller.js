@@ -141,3 +141,21 @@ exports.get_user_by_id = (req,res) =>{
   })
 }
 
+exports.recuperarContraseña = (req,res) =>{
+  User.findOne({where:{correo:req.body.correo}})
+  .then(usuario =>{
+    if(usuario == null){
+      return res.status(404).send({message:'No existe el usuario'})
+    }
+    else{
+      User.update({
+        contraseña:bcrypt.hashSync(req.body.contraseña, 8)
+      }, {
+        where:{correo:req.body.correo}
+      })
+      .then(usuario =>{
+        return res.status(200).send({message:'Contraseña recuperada'});
+      })
+    }
+  })
+}

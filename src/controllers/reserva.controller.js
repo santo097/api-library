@@ -30,6 +30,28 @@ exports.mostrarReservaPorId = (req,res) =>{
     })
 }
 
+// Reserva para los usuarios
+
+exports.mostrarReservaUsuarios = (req,res) =>{
+    Usuario.findOne({where:{id:req.params.id_usuario}})
+    .then(usuario =>{
+        if(usuario == null){
+            return res.status(404).send({message:'No existe el usuario'});
+        }
+        else{
+            Reserva.findAll({where:{id_usuario:req.params.id_usuario}})
+            .then(reserva =>{
+                if(reserva == null){
+                    return res.status(200).send({message:'No existe reserva'});
+                }
+                else{
+                    return res.status(200).send(reserva);
+                }
+            })
+        }
+    })
+}
+
 // Borrar por el id
 
 exports.borrarReserva = (req,res) =>{

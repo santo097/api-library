@@ -34,8 +34,8 @@ database.user = require('./user.model')(sequelize, Sequelize);
 database.roles = require('./role.model')(sequelize, Sequelize);
 database.book = require('./book.model')(sequelize, Sequelize);
 database.reserva = require('./reserva.model')(sequelize,Sequelize);
-
-
+database.tarjeta = require('./tarjeta.model')(sequelize,Sequelize);
+database.compras = require('./compra.model')(sequelize,Sequelize);
 // Relaciones
 
 database.roles.belongsToMany(database.user, {
