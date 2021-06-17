@@ -43,7 +43,6 @@ module.exports = (app) =>{
     // 
 
     app.post('/api/usuarios/recuperar',
-    [authJwt.verifyToken],
     auth.recuperarContraseña);
 
     // Ruta publica
