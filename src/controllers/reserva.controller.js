@@ -36,12 +36,14 @@ exports.mostrarReservaUsuarios = (req,res) =>{
     Usuario.findOne({where:{id:req.params.id_usuario}})
     .then(usuario =>{
         if(usuario == null){
-            return res.status(404).send({message:'No existe el usuario'});
+            console.log(usuario);
+            return res.status(200).send({message:'No existe el usuario'});
         }
         else{
             Reserva.findAll({where:{id_usuario:req.params.id_usuario}})
             .then(reserva =>{
                 if(reserva == null){
+                    console.log(reserva);
                     return res.status(200).send({message:'No existe reserva'});
                 }
                 else{
@@ -91,7 +93,8 @@ exports.crearReserva = (req,res) =>{
                         Reserva.create({
                             id_usuario:req.body.id_usuario,
                             libro:req.body.libro,
-                            cantidad:req.body.cantidad
+                            cantidad:req.body.cantidad,
+                            estado:true
                         })
                         .then(reserva =>{
                             return res.status(200).send({message:'La reserva fue agregada'});
