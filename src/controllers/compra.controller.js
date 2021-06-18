@@ -43,15 +43,30 @@ exports.guardarCompra = (req,res) =>{
             return res.status(404).send({message:'No existe el usuario'});
         }
         else{
-            Reserva.findOne({where:{id_usuario:req.params.id_usuario, id:req.body.id}})
-            .then(reserva =>{
-                if(reserva == null){
-                    return res.status(404).send({message:'No existe la reserva'});
+            Libro.findOne({where:{titulo:req.body.libro}})
+            .then(libro =>{
+                if(libro == null){
+                    return res.status(404).send({message:'No existe el libro'});
                 }
                 else{
-                    return res.status(300).send({message:'Stand by'});
+                    libro.cantidad = libro.cantidad - req.body.cantidad;
+                    Libro.update({
+                        cantidad:libro.cantidad
+                    },{
+                        where:{titulo:req.body.libro}
+                    })
+                    .then(libro =>{
+                        Compra.create({
+                            id_usuario:req.body.id_usuario,
+                            libro:req.body.libro,
+                            cantidad:req.body.cantidad
+                        })
+                        .then(compra =>{
+                            return res.status(200).send({message:'Compra realizada'});
+                        })
+                    })
                 }
             })
-        } 
+        }
     })
 }

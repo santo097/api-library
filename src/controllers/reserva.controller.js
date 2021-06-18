@@ -57,7 +57,32 @@ exports.mostrarReservaUsuarios = (req,res) =>{
 // Borrar por el id
 
 exports.borrarReserva = (req,res) =>{
-    Reserva.delete({where:{id:req.params.id}})
+    Reserva.findOne({where:{id:req.params.id}})
+    .then(reservar =>{
+        if(reservar == null){
+            res.status(404).send({message:'No existe la reserva'})
+        }
+        else{
+            Book.findOne({where:{titulo:reservar.libro}})
+            .then(libro =>{
+                if(libro == null){
+                    res.status(404).send({message:'No existe el libro'});
+                }
+                else{
+                    libro.cantidad = reservar.cantidad + libro.cantidad;
+                    Book.update({
+                        cantidad:libro.cantidad
+                    },{
+                        where:{titulo:reservar.libro}
+                    }).then(libros =>{
+                        Reserva.destroy({where:{id:req.params.id}})
+                        return res.status(200).send({message:'Reserva borrada'});
+                    })
+                }
+            })
+        }
+    })
+    Reserva.destroy({where:{id:req.params.id}})
     .then(reserva =>{
         if(reserva == null){
             return res.status(404).send({message:'No existen registros'});

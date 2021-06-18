@@ -3,10 +3,10 @@ module.exports = (sequelize, Sequelize) =>{
         id_usuario:{
             type:Sequelize.INTEGER
         },
-        id_reserva:{
+        libro:{
             type:Sequelize.INTEGER
         },
-        id_libro:{
+        cantidad:{
             type:Sequelize.INTEGER
         }
     });
