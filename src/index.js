@@ -52,6 +52,8 @@ require('./routes/auth.routes')(server);
 require('./routes/libros.routes')(server);
 require('./routes/reserva.routes')(server);
 require('./routes/tarjeta.routes')(server);
+require('./routes/compra.routes')(server);
+require('./routes/noticias.routes')(server);
 
 server.get('/', (req,res)=>{
     res.json('Hola soy la ruta principal');
