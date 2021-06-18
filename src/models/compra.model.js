@@ -1,10 +1,10 @@
 module.exports = (sequelize, Sequelize) =>{
-    const Compras = sequelize.define("compra", {
+    const Compras = sequelize.define("compras", {
         id_usuario:{
             type:Sequelize.INTEGER
         },
         libro:{
-            type:Sequelize.INTEGER
+            type:Sequelize.STRING
         },
         cantidad:{
             type:Sequelize.INTEGER

@@ -16,7 +16,7 @@ module.exports = (app) =>{
 
     // Crear reserva
 
-    app.post('/api/compra/guardar',
+    app.post('/api/compra/guardar/:id_usuario',
     [authJwt.verifyToken],
     controller.guardarCompra
     );
