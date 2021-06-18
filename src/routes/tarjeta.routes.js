@@ -16,7 +16,7 @@ module.exports = (app) =>{
 
     // Crear tarjeta
 
-    app.post('/api/tarjeta/guardar/:id_usuario',
+    app.post('/api/tarjeta/guardar',
     [authJwt.verifyToken],
     controller.guardarTarjeta
     );

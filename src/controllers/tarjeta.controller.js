@@ -13,14 +13,14 @@ exports.mostrarTarjeta = (req,res) =>{
 // Guardar tarjetas del usuario
 
 exports.guardarTarjeta = (req,res) =>{
-    Usuario.findOne({where: {id:req.params.id_usuario}})
+    Usuario.findOne({where: {id:req.body.id_usuario}})
     .then(usuario =>{
         if(usuario == null){
             return res.status(404).send({message:'No existen registros'});
         }
         else{
             Tarjeta.create({
-                id_usuario:req.params.id_usuario,
+                id_usuario:req.body.id_usuario,
                 nombre_propietario:req.body.nombre_propietario,
                 numero_tarjeta:req.body.numero_tarjeta,
                 fecha_vencimiento:req.body.fecha_vencimiento,
