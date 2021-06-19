@@ -30,7 +30,7 @@ module.exports = (app) =>{
 
     // Buscar reserva por el id
 
-    app.get('/api/compra/:id',
+    app.get('/api/compra/:id_usuario',
     [authJwt.verifyToken],
     controller.mostrarComprasUsuario
     );
