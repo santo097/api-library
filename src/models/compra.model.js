@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) =>{
-    const Compras = sequelize.define("compras", {
+    const Compra = sequelize.define("compras", {
         id_usuario:{
             type:Sequelize.INTEGER
         },
@@ -11,5 +11,5 @@ module.exports = (sequelize, Sequelize) =>{
         }
     });
 
-    return Compras;
+    return Compra;
 }

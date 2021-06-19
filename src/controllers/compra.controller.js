@@ -2,7 +2,7 @@ const db = require('../models');
 const Compra = db.compras;
 const Usuario = db.user;
 const Libro = db.book;
-const Reserva = db.reserva;
+
 
 exports.mostrarCompras = (req,res) =>{
     Compra.findAll()
@@ -35,9 +35,10 @@ exports.mostrarComprasUsuario = (req,res) =>{
     })
 }
 
+// Crear reserva
 
 exports.guardarCompra = (req,res) =>{
-    Usuario.findOne({where:{id:req.params.id_usuario}})
+    Usuario.findOne({where:{id:req.body.id_usuario}})
     .then(usuario =>{
         if(usuario == null){
             return res.status(404).send({message:'No existe el usuario'});
@@ -59,10 +60,10 @@ exports.guardarCompra = (req,res) =>{
                         Compra.create({
                             id_usuario:req.body.id_usuario,
                             libro:req.body.libro,
-                            cantidad:req.body.cantidad
+                            cantidad:req.body.cantidad,
                         })
                         .then(compra =>{
-                            return res.status(200).send({message:'Compra realizada'});
+                            return res.status(200).send({message:'La reserva fue agregada'});
                         })
                     })
                 }
